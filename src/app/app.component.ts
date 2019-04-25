@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,13 @@ export class AppComponent implements OnInit{
   projectStatuses = ['Stable', 'Critical', 'Finished'];
   forbiddenProjectNames = ['test'];
 
+  projectName: string;
+  email: string;
+  status: string;
+
+  modalRef: BsModalRef;
+
+  constructor(private modalService: BsModalService) {}
 
   ngOnInit() {
     this.projectForm = new FormGroup({
@@ -32,7 +40,14 @@ export class AppComponent implements OnInit{
 
   onSubmit() {
     console.log(this.projectForm.value.projectData, this.projectForm.value.projectStatus);
+    this.projectName = this.projectForm.value.projectData.projectName;
+    this.email = this.projectForm.value.projectData.email;
+    this.status = this.projectForm.value.projectStatus;
     this.projectForm.reset();
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
 }
