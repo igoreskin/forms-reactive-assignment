@@ -40,7 +40,7 @@ export class AppComponent implements OnInit{
 
   // A custom validator for email with a helper function:
   // Both parts of the email, before and after the @, should consist of 
-  // at least one and at most 3 characters comprisiong only letter, 
+  // at least one and at most 32 characters comprisiong only letter, 
   // digits and/or dots(a-z,A-Z,0-9,.). For example, "kate@test.com" and
   // ".@." are valid, but "@test.com" is not.
   isEmailValid(str: string) {
