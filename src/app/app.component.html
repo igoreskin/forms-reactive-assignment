@@ -25,9 +25,15 @@
               id="email"
               formControlName="email"
               class="form-control">
+              <!-- Email validation with in-built and a custom validators: -->
               <span
                 *ngIf="!projectForm.get('projectData.email').valid && projectForm.get('projectData.email').touched"
-                class="help-block">Please enter a valid email address</span>
+                class="help-block">
+                <span *ngIf="projectForm.get('projectData.email').errors['email']">Please enter a valid email address</span>
+                <span *ngIf="projectForm.get('projectData.email').errors['emailIsInvalid'] 
+                && !projectForm.get('projectData.email').errors['email']">Invalid characters</span>
+              </span>
+
           </div>
         </div>
 
